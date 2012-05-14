@@ -37,6 +37,7 @@ public class StudyOptionsActivity extends FragmentActivity {
 	/** Menus */
 	private static final int MENU_PREFERENCES = 201;
 	public static final int MENU_ROTATE = 202;
+	private static final int MENU_ZEEMOTE = 203;
 
 	
     @Override
@@ -68,6 +69,10 @@ public class StudyOptionsActivity extends FragmentActivity {
 		UIUtils.addMenuItem(menu, Menu.NONE, MENU_ROTATE, Menu.NONE,
 				R.string.menu_rotate,
 				android.R.drawable.ic_menu_always_landscape_portrait);
+//		if (mZeemoteEnabled) {
+//			UIUtils.addMenuItem(menu, Menu.NONE, MENU_ZEEMOTE, Menu.NONE,
+//					R.string.menu_zeemote, R.drawable.ic_menu_zeemote);			
+//		}
 		return true;
 	}
 
@@ -95,6 +100,12 @@ public class StudyOptionsActivity extends FragmentActivity {
 			}
 			return true;
 
+//		case MENU_ZEEMOTE:
+//			Log.d(AnkiDroidApp.TAG, "Zeemote: Locale: " + mLocale);
+//			if ((AnkiDroidApp.zeemoteController() != null)) {
+//				controllerUi.showControllerMenu();
+//			}
+//			return true;
 
 		default:
 			return super.onOptionsItemSelected(item);
