@@ -96,6 +96,7 @@ public class Info extends Activity {
 	public static final int UPGRADE_SCREEN_MANUAL_UPGRADE = 5;
 	public static final int UPGRADE_SCREEN_AUTO_UPGRADE = 6;
 	public static final int UPGRADE_CONTINUE = 7;
+	public static final int UPGRADE_IMPORT = 8;
 
 	private static final int DIALOG_USER_NOT_LOGGED_IN_SYNC = 0;
 	private static final int DIALOG_SYNC_LOG = 1;
@@ -129,7 +130,7 @@ public class Info extends Activity {
 
         mWebView = (WebView) findViewById(R.id.info);
         mWebView.setBackgroundColor(res.getColor(Themes.getBackgroundColor()));
-        Themes.setWallpaper((View) mWebView.getParent().getParent());
+        Themes.setWallpaper((View) mWebView.getParent().getParent().getParent());
 
         Button continueButton = (Button) findViewById(R.id.info_continue);
         continueButton.setOnClickListener(new OnClickListener() {
@@ -243,7 +244,7 @@ public class Info extends Activity {
                 break;
 
             case TYPE_UPGRADE_DECKS:
-                sb.append("<html><body>");
+            	sb.append("<html><body>");
 
                 // add upgrade button
                 Button but = (Button) findViewById(R.id.info_tutorial);
@@ -257,7 +258,7 @@ public class Info extends Activity {
 
             	switch (mUpgradeStage) {
             	case UPGRADE_SCREEN_BASIC1:
-            		sb.append("This is a major update to Ankidroid and the upgrade process will take at least 5-10 minutes.<br><br>Do you want to proceed now or later?<br><br>More info: <a href=\"http://code.google.com/p/ankidroid/wiki/Upgrading?wl=en\">http://code.google.com/p/ankidroid/wiki/Upgrading?wl=en</a>");
+            		sb.append("This is a major update to Ankidroid and the upgrade process will take at least 5-10 minutes.<br><br>Do you want to proceed now or later?<br><br><a href=\"http://code.google.com/p/ankidroid/wiki/Upgrading?wl=en\">More info</a>");
                     but.setText(res.getString(R.string.later));
                     but.setOnClickListener(new OnClickListener() {
                         @Override
@@ -325,7 +326,7 @@ public class Info extends Activity {
             		break;
 
             	case UPGRADE_SCREEN_MORE_OPTIONS:
-            		sb.append("You can create a new empty collection by clicking below.<br><br>If you want to downgrade back to AnkiDroid 1 then please (read these instructions on <a href=\"http://code.google.com/p/ankidroid/wiki/Upgrading?wl=en#Continuing_to_use_AnkiDroid_1.1.3\">http://code.google.com/p/ankidroid/wiki/Upgrading?wl=en#Continuing_to_use_AnkiDroid_1.1.3</a>).");
+            		sb.append("You can create a new empty collection by clicking below.<br><br>If you want to downgrade back to AnkiDroid 1 then please (read <a href=\"http://code.google.com/p/ankidroid/wiki/Upgrading?wl=en#Continuing_to_use_AnkiDroid_1.1.3\">these instructions</a>).");
                     but.setText(res.getString(R.string.upgrade_decks_button));
                     but.setText("Back");
                     but.setOnClickListener(new OnClickListener() {
@@ -366,7 +367,7 @@ public class Info extends Activity {
             		break;
 
             	case UPGRADE_SCREEN_WEB_UPGRADE:
-            		sb.append("<b>This upgrade method is not recommended if you used media files, or have a big collection!</b><br><br>Your anki1 decks will be zipped and uploaded to AnkiWeb, and the converted collection will then be downloaded.<br><br>Please note that a stable internet connection is required, and that there is a 50MB file limit.<br><br>Users of Anki Desktop are strongly encouraged to use the PC based upgrad method.<br><br>Do you still want to proceed?");
+            		sb.append("<b>This upgrade method is not recommended if you used media files, or have a big collection!</b><br><br>Your anki1 decks will be zipped and uploaded to AnkiWeb, and the converted collection will then be downloaded.<br><br>Please note that a stable internet connection is required, and that there is a 50MB file limit.<br><br>Users of Anki Desktop are strongly encouraged to use the PC based upgrade method.<br><br>Do you still want to proceed?");
                     but.setText("Back");
                     but.setOnClickListener(new OnClickListener() {
                         @Override
@@ -395,7 +396,7 @@ public class Info extends Activity {
             		break;
 
             	case UPGRADE_SCREEN_PC_UPGRADE:
-            		sb.append("Do you currently have an up-to-date version of your AnkiDroid collection in the Anki desktop software?");
+            		sb.append("If you currently have an up-to-date version of your AnkiDroid collection in the Anki desktop software, you can upgrade from there and then download your upgraded collection by syncing with AnkiWeb.<br><br>Alternatively, you can copy your AnkiDroid collection to your PC using USB, then upgrade the collection and copy back to AnkiDroid.");
                     but.setText("Back");
                     but.setOnClickListener(new OnClickListener() {
                         @Override
@@ -407,7 +408,7 @@ public class Info extends Activity {
                         	finishWithAnimation(false);
                         }
                     });
-                    syncButton.setText(res.getString(R.string.no));
+                    syncButton.setText("USB");
                     syncButton.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View arg0) {
@@ -417,7 +418,7 @@ public class Info extends Activity {
                         	finishWithAnimation();
                         }
                     });
-                    continueButton.setText(res.getString(R.string.yes));
+                    continueButton.setText("AnkiWeb");
                     continueButton.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View arg0) {
@@ -430,7 +431,7 @@ public class Info extends Activity {
             		break;
 
             	case UPGRADE_SCREEN_MANUAL_UPGRADE:
-            		sb.append("Please follow these step by step instructions (<a href=\"http://code.google.com/p/ankidroid/wiki/Upgrading?ts=1357702849&updated=Upgrading#Option_1:_Using_USB_(Recommended)\">http://code.google.com/p/ankidroid/wiki/Upgrading?ts=1357702849&updated=Upgrading#Option_1:_Using_USB_(Recommended)</a>) explaining the manual upgrade process, then restart AnkiDroid when you are finished.");
+            		sb.append("Please copy all of your *.anki files (and any *.media folders) from your AnkiDroid folder to your Anki Desktop folder, and then install and start Anki Desktop version 2.0.4 or greater to upgrade your collection.<br><br>When the upgrade is completed, please export your collection from Anki2 and copy the collection.apkg file to your AnkiDroid folder and press the Import button below.<br><br><a href=\"http://code.google.com/p/ankidroid/wiki/Upgrading?wl=en#Option_1:_Using_USB_(recommended)\">More detailed information on upgrading using USB.</a>");
                     but.setText("Back");
                     but.setOnClickListener(new OnClickListener() {
                         @Override
@@ -442,19 +443,21 @@ public class Info extends Activity {
                         	finishWithAnimation(false);
                         }
                     });
-                    syncButton.setText("Quit");
+                    syncButton.setText("Import");
                     syncButton.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View arg0) {
-                        	setResult(RESULT_CANCELED);
-                        	finishWithAnimation();
+                        	Intent result = new Intent();
+                        	result.putExtra(TYPE_UPGRADE_STAGE, UPGRADE_IMPORT);
+                        	setResult(RESULT_OK, result);
+                        	finishWithAnimation(false);
                         }
                     });
                     continueButton.setVisibility(View.GONE);
             		break;
 
             	case UPGRADE_SCREEN_AUTO_UPGRADE:
-            		sb.append("Please follow these instructions (<a href=\"http://code.google.com/p/ankidroid/wiki/Upgrading?ts=1357702849&updated=Upgrading#Option_2:_Using_AnkiWeb_sync\">http://code.google.com/p/ankidroid/wiki/Upgrading?ts=1357702849&updated=Upgrading#Option_2:_Using_AnkiWeb_sync</a>) to upgrade to Anki Desktop 2, then sync your upgraded collection with AnkiWeb and press the \"Download\" button.");
+            		sb.append("Please install and start Anki Desktop version 2.0.4 or greater to upgrade your collection, then sync your upgraded collection with AnkiWeb and press the \"Download\" button.<br><br><a href=\"http://code.google.com/p/ankidroid/wiki/Upgrading?wl=en#Option_2:_Using_AnkiWeb_sync\">More detailed information on upgrading using AnkiWeb</a>");
                     but.setText("Back");
                     but.setOnClickListener(new OnClickListener() {
                         @Override

@@ -2504,6 +2504,10 @@ public class DeckPicker extends FragmentActivity {
         		if (type == Info.UPGRADE_CONTINUE) {
         			showStartupScreensAndDialogs(AnkiDroidApp.getSharedPrefs(getBaseContext()), 3);        		
         		} else {
+        			if (type == Info.UPGRADE_IMPORT) {
+        				// upgrade by import, set path to non null in order to show the dialog after having opened the collection
+        				mImportPath = "";
+        			}
         			showUpgradeScreen(true, type, !intent.hasExtra(Info.TYPE_ANINAMTION_RIGHT));
         		}
         	} else {
