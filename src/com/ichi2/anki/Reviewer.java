@@ -2126,7 +2126,6 @@ public class Reviewer extends AnkiActivity {
 			if (mSimpleCard == null) {
 	            mSimpleCard = new ScrollTextView(this);
 	            Themes.setRegularFont(mSimpleCard);
-                Themes.showThemedToast(this, "e: " + TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()) +" s: " + mSimpleCard.getTextSize(),false);
 	            mSimpleCard.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()) * mDisplayFontSize / 100);
 	            mSimpleCard.setGravity(Gravity.CENTER);
 	            try {
